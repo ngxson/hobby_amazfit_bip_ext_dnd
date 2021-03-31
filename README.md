@@ -4,7 +4,7 @@ Extra functions for DND screen (BipOS v5.5+)
 ![image](https://user-images.githubusercontent.com/7702203/113123432-e0982280-9214-11eb-886c-482ee51b9798.png)
 
 **Functions:**
-- Switch DND modes: OFF => ON => AUTO
+- Switch DND modes: OFF (grey) => ON (green) => AUTO (blue with zz icon)
 - Find my phone
 - Torch (flash light): swipe left to access
 - Music control: swipe right to access
