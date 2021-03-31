@@ -33,11 +33,16 @@ void draw_screen_main(int x, struct app_data_ *app_data) {
   show_elf_res_by_id(ELF_INDEX_SELF, dnd_icon,        x+BTN_X_COL_1_OF_2, BTN_Y_ROW_1_OF_2);
   show_elf_res_by_id(ELF_INDEX_SELF, find_phone_icon, x+BTN_X_COL_2_OF_2, BTN_Y_ROW_1_OF_2);
   show_elf_res_by_id(ELF_INDEX_SELF, RES_IC_FLASH,    x+BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2);
-  show_elf_res_by_id(ELF_INDEX_SELF, RES_IC_MUSIC,    x+BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2);
+  show_elf_res_by_id(ELF_INDEX_SELF, RES_IC_CALC,     x+BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2);
 }
 
-void draw_screen_music(int x) {
+void draw_screen_music(int x, struct app_data_ *app_data) {
   show_elf_res_by_id(ELF_INDEX_SELF, RES_MUSIC_SCREEN, x, 20);
+  // flash animation on clicking music control buttons
+  if (app_data->music_last_btn_x != -1) {
+    show_elf_res_by_id(ELF_INDEX_SELF, RES_MUSIC_BTN_CLICKED, app_data->music_last_btn_x, app_data->music_last_btn_y);
+    app_data->music_last_btn_x = -1;
+  }
 }
 
 void draw_screen_flash(int x) {

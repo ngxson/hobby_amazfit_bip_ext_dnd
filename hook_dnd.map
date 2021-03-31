@@ -28,8 +28,6 @@ Discarded input sections
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.draw_rect_or_line
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
- .text.repaint_screen
-                0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.show_poweroff_message
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.show_options_menu_2nd_screen
@@ -154,11 +152,7 @@ Discarded input sections
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.load_elf_by_index
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
- .text.load_elf_by_name
-                0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.init_elf_loader
-                0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
- .text.elf_finish
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
  .text.ElfReadSettings
                 0x00000000        0xc ..\libbip\libbip.a(proxy_import.o)
@@ -374,7 +368,7 @@ LOAD ..\libbip\libbip.a
  *(.iplt)
  .iplt          0x000080a0        0x0 BipStatusbarLib.o
 
-.text           0x000080a0      0x884
+.text           0x000080a0      0x970
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  *(.text.startup .text.startup.*)
@@ -397,153 +391,169 @@ LOAD ..\libbip\libbip.a
                 0x00008278       0x7c main.o
                 0x00008278                draw_screen_main
  .text.draw_screen_music
-                0x000082f4        0xe main.o
+                0x000082f4       0x2c main.o
                 0x000082f4                draw_screen_music
  .text.draw_screen_flash
-                0x00008302       0x1c main.o
-                0x00008302                draw_screen_flash
+                0x00008320       0x1c main.o
+                0x00008320                draw_screen_flash
  .text.update_animation
-                0x0000831e       0x40 main.o
-                0x0000831e                update_animation
+                0x0000833c       0x40 main.o
+                0x0000833c                update_animation
  .text.send_music_command
-                0x0000835e       0x30 main.o
-                0x0000835e                send_music_command
- *fill*         0x0000838e        0x2 
+                0x0000837c       0x30 main.o
+                0x0000837c                send_music_command
  .text.set_flash_light_mode
-                0x00008390       0x34 main.o
-                0x00008390                set_flash_light_mode
+                0x000083ac       0x34 main.o
+                0x000083ac                set_flash_light_mode
  .text.key_press_screen
-                0x000083c4       0x44 main.o
-                0x000083c4                key_press_screen
- .text.vib      0x00008408        0xa main.o
-                0x00008408                vib
+                0x000083e0       0x44 main.o
+                0x000083e0                key_press_screen
+ .text.vib      0x00008424        0xa main.o
+                0x00008424                vib
+ *fill*         0x0000842e        0x2 
+ .text.click_calc_btn
+                0x00008430       0x50 main.o
+                0x00008430                click_calc_btn
  .text.draw_screen
-                0x00008412       0xa6 main.o
-                0x00008412                draw_screen
+                0x00008480       0xa2 main.o
+                0x00008480                draw_screen
+ *fill*         0x00008522        0x2 
  .text.show_screen
-                0x000084b8       0x90 main.o
-                0x000084b8                show_screen
+                0x00008524       0x9c main.o
+                0x00008524                show_screen
  .text.screen_job
-                0x00008548       0x2e main.o
-                0x00008548                screen_job
+                0x000085c0       0x2e main.o
+                0x000085c0                screen_job
  .text.switch_to_screen
-                0x00008576       0x40 main.o
-                0x00008576                switch_to_screen
- *fill*         0x000085b6        0x2 
+                0x000085ee       0x40 main.o
+                0x000085ee                switch_to_screen
+ .text.click_music_btn
+                0x0000862e       0x24 main.o
+                0x0000862e                click_music_btn
+ *fill*         0x00008652        0x2 
  .text.dispatch_screen
-                0x000085b8      0x1c8 main.o
-                0x000085b8                dispatch_screen
- .text          0x00008780        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008780                _start
+                0x00008654      0x1f4 main.o
+                0x00008654                dispatch_screen
+ .text          0x00008848        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008848                _start
  .text.text_out
-                0x0000878c        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x0000878c                text_out
+                0x00008854        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008854                text_out
  .text.text_out_center
-                0x00008798        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008798                text_out_center
+                0x00008860        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008860                text_out_center
  .text.set_bg_color
-                0x000087a4        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087a4                set_bg_color
+                0x0000886c        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x0000886c                set_bg_color
  .text.set_fg_color
-                0x000087b0        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087b0                set_fg_color
+                0x00008878        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008878                set_fg_color
  .text.draw_horizontal_line
-                0x000087bc        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087bc                draw_horizontal_line
+                0x00008884        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008884                draw_horizontal_line
  .text.draw_filled_rect
-                0x000087c8        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087c8                draw_filled_rect
+                0x00008890        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008890                draw_filled_rect
  .text.fill_screen_bg
-                0x000087d4        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087d4                fill_screen_bg
+                0x0000889c        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x0000889c                fill_screen_bg
  .text.set_graph_callback_to_ram_1
-                0x000087e0        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087e0                set_graph_callback_to_ram_1
+                0x000088a8        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088a8                set_graph_callback_to_ram_1
  .text.draw_filled_rect_bg
-                0x000087ec        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087ec                draw_filled_rect_bg
+                0x000088b4        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088b4                draw_filled_rect_bg
  .text.repaint_screen_lines
-                0x000087f8        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000087f8                repaint_screen_lines
+                0x000088c0        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088c0                repaint_screen_lines
+ .text.repaint_screen
+                0x000088cc        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088cc                repaint_screen
  .text.reg_menu
-                0x00008804        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008804                reg_menu
+                0x000088d8        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088d8                reg_menu
  .text.show_menu_animate
-                0x00008810        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008810                show_menu_animate
+                0x000088e4        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088e4                show_menu_animate
  .text.load_font
-                0x0000881c        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x0000881c                load_font
+                0x000088f0        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088f0                load_font
  .text._sprintf
-                0x00008828        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008828                _sprintf
- .text._memclr  0x00008834        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008834                _memclr
+                0x000088fc        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000088fc                _sprintf
+ .text._memclr  0x00008908        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008908                _memclr
  .text.get_tick_count
-                0x00008840        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008840                get_tick_count
+                0x00008914        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008914                get_tick_count
  .text.set_update_period
-                0x0000884c        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x0000884c                set_update_period
+                0x00008920        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008920                set_update_period
  .text.set_display_state_value
-                0x00008858        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008858                set_display_state_value
- .text.vibrate  0x00008864        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008864                vibrate
+                0x0000892c        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x0000892c                set_display_state_value
+ .text.vibrate  0x00008938        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008938                vibrate
  .text.get_current_date_time
-                0x00008870        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008870                get_current_date_time
+                0x00008944        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008944                get_current_date_time
  .text.show_watchface
-                0x0000887c        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x0000887c                show_watchface
+                0x00008950        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008950                show_watchface
  .text.get_generic_data
-                0x00008888        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008888                get_generic_data
+                0x0000895c        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x0000895c                get_generic_data
  .text.set_generic_data
-                0x00008894        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008894                set_generic_data
+                0x00008968        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008968                set_generic_data
  .text.get_backlight_value
-                0x000088a0        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088a0                get_backlight_value
+                0x00008974        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008974                get_backlight_value
  .text.set_backlight_percent
-                0x000088ac        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088ac                set_backlight_percent
+                0x00008980        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008980                set_backlight_percent
  .text.set_backlight_state
-                0x000088b8        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088b8                set_backlight_state
+                0x0000898c        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x0000898c                set_backlight_state
  .text.send_host_app_msg
-                0x000088c4        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088c4                send_host_app_msg
+                0x00008998        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008998                send_host_app_msg
  .text.send_host_app_data
-                0x000088d0        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088d0                send_host_app_data
+                0x000089a4        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089a4                send_host_app_data
  .text.check_app_state
-                0x000088dc        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088dc                check_app_state
+                0x000089b0        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089b0                check_app_state
  .text.get_battery_charge
-                0x000088e8        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088e8                get_battery_charge
+                0x000089bc        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089bc                get_battery_charge
  .text.pvPortMalloc
-                0x000088f4        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x000088f4                pvPortMalloc
+                0x000089c8        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089c8                pvPortMalloc
+ .text.load_elf_by_name
+                0x000089d4        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089d4                load_elf_by_name
+ .text.elf_finish
+                0x000089e0        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089e0                elf_finish
  .text.show_elf_res_by_id
-                0x00008900        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008900                show_elf_res_by_id
+                0x000089ec        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089ec                show_elf_res_by_id
  .text.get_proc_by_addr
-                0x0000890c        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x0000890c                get_proc_by_addr
+                0x000089f8        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x000089f8                get_proc_by_addr
  .text.get_ptr_temp_buf_2
-                0x00008918        0xc ..\libbip\libbip.a(proxy_import.o)
-                0x00008918                get_ptr_temp_buf_2
+                0x00008a04        0xc ..\libbip\libbip.a(proxy_import.o)
+                0x00008a04                get_ptr_temp_buf_2
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00008924        0x0 linker stubs
+ .glue_7t       0x00008a10        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x00008924        0x0 linker stubs
+ .glue_7        0x00008a10        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x00008924        0x0 linker stubs
+ .vfp11_veneer  0x00008a10        0x0 linker stubs
  *(.v4_bx)
- .v4_bx         0x00008924        0x0 linker stubs
+ .v4_bx         0x00008a10        0x0 linker stubs
 
 .fini
  *(SORT_NONE(.fini))
@@ -551,12 +561,14 @@ LOAD ..\libbip\libbip.a
                 [!provide]                PROVIDE (_etext = .)
                 [!provide]                PROVIDE (etext = .)
 
-.rodata         0x00008924       0x1f
+.rodata         0x00008a10       0x24
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.show_statusbar.str1.1
-                0x00008924       0x19 BipStatusbarLib.o
+                0x00008a10       0x19 BipStatusbarLib.o
+ .rodata.click_calc_btn.str1.1
+                0x00008a29        0x5 main.o
  .rodata.backlight_percent
-                0x0000893d        0x6 main.o
+                0x00008a2e        0x6 main.o
 
 .rodata1
  *(.rodata1)
@@ -585,7 +597,7 @@ LOAD ..\libbip\libbip.a
 
 .exception_ranges
  *(.exception_ranges*)
-                0x00008943                . = .
+                0x00008a34                . = .
 
 .eh_frame
  *(.eh_frame)
@@ -600,7 +612,7 @@ LOAD ..\libbip\libbip.a
 .exception_ranges
  *(.exception_ranges*)
 
-.tdata          0x00008943        0x0
+.tdata          0x00008a34        0x0
                 [!provide]                PROVIDE (__tdata_start = .)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
 
@@ -608,18 +620,18 @@ LOAD ..\libbip\libbip.a
  *(.tbss .tbss.* .gnu.linkonce.tb.*)
  *(.tcommon)
 
-.preinit_array  0x00008943        0x0
+.preinit_array  0x00008a34        0x0
                 [!provide]                PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x00008943        0x0
+.init_array     0x00008a34        0x0
                 [!provide]                PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                PROVIDE (__init_array_end = .)
 
-.fini_array     0x00008943        0x0
+.fini_array     0x00008a34        0x0
                 [!provide]                PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -642,54 +654,54 @@ LOAD ..\libbip\libbip.a
 .jcr
  *(.jcr)
 
-.data.rel.ro    0x00008943        0x0
+.data.rel.ro    0x00008a34        0x0
  *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
  *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
- .data.rel.ro   0x00008943        0x0 BipStatusbarLib.o
+ .data.rel.ro   0x00008a34        0x0 BipStatusbarLib.o
 
-.dynamic        0x00008944       0x80
+.dynamic        0x00008a34       0x80
  *(.dynamic)
- .dynamic       0x00008944       0x80 BipStatusbarLib.o
-                0x00008944                _DYNAMIC
+ .dynamic       0x00008a34       0x80 BipStatusbarLib.o
+                0x00008a34                _DYNAMIC
 
-.got            0x000089c4       0x18
+.got            0x00008ab4       0x18
  *(.got.plt)
- .got.plt       0x000089c4        0xc BipStatusbarLib.o
-                0x000089c4                _GLOBAL_OFFSET_TABLE_
+ .got.plt       0x00008ab4        0xc BipStatusbarLib.o
+                0x00008ab4                _GLOBAL_OFFSET_TABLE_
  *(.igot.plt)
- .igot.plt      0x000089d0        0x0 BipStatusbarLib.o
+ .igot.plt      0x00008ac0        0x0 BipStatusbarLib.o
  *(.got)
- .got           0x000089d0        0xc BipStatusbarLib.o
+ .got           0x00008ac0        0xc BipStatusbarLib.o
  *(.igot)
 
-.data           0x000089dc       0x20
-                0x000089dc                __data_start = .
+.data           0x00008acc       0x20
+                0x00008acc                __data_start = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.rel.screen_data
-                0x000089dc       0x20 main.o
-                0x000089dc                screen_data
+                0x00008acc       0x20 main.o
+                0x00008acc                screen_data
 
 .data1
  *(.data1)
-                0x000089fc                _edata = .
+                0x00008aec                _edata = .
                 [!provide]                PROVIDE (edata = .)
-                0x000089fc                . = .
-                0x000089fc                __bss_start = .
-                0x000089fc                __bss_start__ = .
+                0x00008aec                . = .
+                0x00008aec                __bss_start = .
+                0x00008aec                __bss_start__ = .
 
-.bss            0x000089fc        0x0
+.bss            0x00008aec        0x0
  *(.dynbss)
- .dynbss        0x000089fc        0x0 BipStatusbarLib.o
+ .dynbss        0x00008aec        0x0 BipStatusbarLib.o
  *(.bss .bss.* .gnu.linkonce.b.*)
  *(COMMON)
-                0x000089fc                . = ALIGN ((. != 0x0)?0x4:0x1)
-                0x000089fc                _bss_end__ = .
-                0x000089fc                __bss_end__ = .
-                0x000089fc                . = ALIGN (0x4)
-                0x000089fc                . = SEGMENT_START ("ldata-segment", .)
-                0x000089fc                . = ALIGN (0x4)
-                0x000089fc                __end__ = .
-                0x000089fc                _end = .
+                0x00008aec                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00008aec                _bss_end__ = .
+                0x00008aec                __bss_end__ = .
+                0x00008aec                . = ALIGN (0x4)
+                0x00008aec                . = SEGMENT_START ("ldata-segment", .)
+                0x00008aec                . = ALIGN (0x4)
+                0x00008aec                __end__ = .
+                0x00008aec                _end = .
                 [!provide]                PROVIDE (end = .)
 
 .stack          0x00080000        0x0
@@ -800,11 +812,11 @@ LOAD ..\libbip\libbip.a
 .note.gnu.arm.ident
  *(.note.gnu.arm.ident)
 
-.noinit         0x000089fc        0x0
-                0x000089fc                . = ALIGN (0x2)
+.noinit         0x00008aec        0x0
+                0x00008aec                . = ALIGN (0x2)
                 [!provide]                PROVIDE (__noinit_start = .)
  *(.noinit)
-                0x000089fc                . = ALIGN (0x2)
+                0x00008aec                . = ALIGN (0x2)
                 [!provide]                PROVIDE (__noinit_end = .)
 
 /DISCARD/
@@ -845,6 +857,8 @@ check_app_state                                   ..\libbip\libbip.a(proxy_impor
                                                   BipStatusbarLib.o
 check_touch_in_range                              main.o
 clear_menu                                        ..\libbip\libbip.a(proxy_import.o)
+click_calc_btn                                    main.o
+click_music_btn                                   main.o
 create_and_show_notification                      ..\libbip\libbip.a(proxy_import.o)
 dispatch_alarm_set                                ..\libbip\libbip.a(proxy_import.o)
 dispatch_left_side_menu                           ..\libbip\libbip.a(proxy_import.o)
@@ -867,6 +881,7 @@ draw_screen_music                                 main.o
 draw_vertical_line                                ..\libbip\libbip.a(proxy_import.o)
 dump_mem                                          ..\libbip\libbip.a(proxy_import.o)
 elf_finish                                        ..\libbip\libbip.a(proxy_import.o)
+                                                  main.o
 f_log_flush                                       ..\libbip\libbip.a(proxy_import.o)
 fill_screen_bg                                    ..\libbip\libbip.a(proxy_import.o)
                                                   main.o
@@ -919,6 +934,7 @@ key_press_screen                                  main.o
 keypress_menu_alipay_1st_screen                   ..\libbip\libbip.a(proxy_import.o)
 load_elf_by_index                                 ..\libbip\libbip.a(proxy_import.o)
 load_elf_by_name                                  ..\libbip\libbip.a(proxy_import.o)
+                                                  main.o
 load_font                                         ..\libbip\libbip.a(proxy_import.o)
                                                   main.o
 log_printf                                        ..\libbip\libbip.a(proxy_import.o)
@@ -934,6 +950,7 @@ read_res_by_id                                    ..\libbip\libbip.a(proxy_impor
 reg_menu                                          ..\libbip\libbip.a(proxy_import.o)
                                                   main.o
 repaint_screen                                    ..\libbip\libbip.a(proxy_import.o)
+                                                  main.o
 repaint_screen_lines                              ..\libbip\libbip.a(proxy_import.o)
                                                   main.o
 screen_data                                       main.o

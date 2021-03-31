@@ -22,9 +22,10 @@
 #define RES_IC_FIND_BT_OFF     5
 #define RES_IC_FIND_ON         6
 #define RES_IC_FLASH           7
-#define RES_IC_MUSIC           8
+#define RES_IC_CALC            8
 #define RES_IC_FIND_OFF        9
 #define RES_MUSIC_SCREEN       10
+#define RES_MUSIC_BTN_CLICKED  11
 
 #define BTN_Y_ROW_1_OF_2       20
 #define BTN_Y_ROW_2_OF_2       98
@@ -60,6 +61,9 @@ struct app_data_ {
   int        current_screen;
   int        main_screen_x;  // for animation 0 <= x <= 176
   int        last_action_tick;
+  int        music_is_paused;
+  int        music_last_btn_x;
+  int        music_last_btn_y;
 };
 
 // template.c

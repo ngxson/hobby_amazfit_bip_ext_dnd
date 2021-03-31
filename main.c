@@ -50,6 +50,9 @@ void show_screen(void *proc) {
     app_data->current_screen = SCREEN_MAIN;
     app_data->is_finding_phone = 0;
     app_data->main_screen_x = 0;
+    app_data->music_is_paused = 1;
+    app_data->music_last_btn_x = -1;
+    app_data->music_last_btn_y = -1;
     app_data->last_action_tick = get_tick_count();
   }
 
@@ -97,6 +100,26 @@ void switch_to_screen(struct app_data_ *app_data, int screen) {
   draw_screen(app_data);
 }
 
+void click_music_btn(struct app_data_ *app_data, int code, int x, int y) {
+  vib();
+  send_music_command(code);
+  app_data->music_last_btn_x = x;
+  app_data->music_last_btn_y = y;
+  draw_screen(app_data);
+}
+
+int click_calc_btn() {
+  int result = load_elf_by_name("calc", show_watchface, 0, 0, NULL);
+  repaint_screen();
+  if (result == ERROR_NONE) {
+    Elf_proc_* proc = get_proc_by_addr(main);
+    proc->ret_f = NULL;
+    elf_finish(main);
+    return ERROR_NONE;
+  }
+  return 0;
+}
+
 int dispatch_screen(void *param) {
   struct app_data_ **app_data_p = get_ptr_temp_buf_2(); //  pointer to a pointer to screen data 
   struct app_data_ *app_data = *app_data_p; //  pointer to screen data
@@ -116,24 +139,24 @@ int dispatch_screen(void *param) {
     if (app_data->current_screen == SCREEN_MAIN) {
       if (check_touch_in_range(gest, BTN_X_COL_1_OF_2, BTN_Y_ROW_1_OF_2, BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2)) {
         // DND button
-        switch_dnd_mode();
         vib();
+        switch_dnd_mode();
         draw_screen(app_data);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_2, BTN_Y_ROW_1_OF_2, BTN_X_END, BTN_Y_ROW_2_OF_2)) {
         // Find phone button
         if (IS_BT_CONNECTED) {
+          vib();
           send_host_app_msg(app_data->is_finding_phone ? CMD_FIND_PHONE_STOP : CMD_FIND_PHONE_START);
           app_data->is_finding_phone = ~app_data->is_finding_phone;
-          vib();
           draw_screen(app_data);
         }
       } else if (check_touch_in_range(gest, BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2, BTN_X_COL_2_OF_2, BTN_Y_END)) {
         vib();
         switch_to_screen(app_data, SCREEN_FLASH);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2, BTN_X_END, BTN_Y_END)) {
-        // Music button
+        // Calculator button
         vib();
-        switch_to_screen(app_data, SCREEN_MUSIC);
+        return click_calc_btn();
       }
     }
     
@@ -146,29 +169,21 @@ int dispatch_screen(void *param) {
         switch_to_screen(app_data, SCREEN_MAIN);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_3, BTN_Y_ROW_1_OF_2, BTN_X_COL_3_OF_3, BTN_Y_ROW_2_OF_2)) {
         // vol -
-        send_music_command(CMD_VOL_DOWN);
-        vib();
-        draw_screen(app_data);
+        click_music_btn(app_data, CMD_VOL_DOWN, BTN_X_COL_2_OF_3, BTN_Y_ROW_1_OF_2);
       } else if (check_touch_in_range(gest, BTN_X_COL_3_OF_3, BTN_Y_ROW_1_OF_2, BTN_X_END, BTN_Y_ROW_2_OF_2)) {
         // vol +
-        send_music_command(CMD_VOL_UP);
-        vib();
-        draw_screen(app_data);
+        click_music_btn(app_data, CMD_VOL_UP, BTN_X_COL_3_OF_3, BTN_Y_ROW_1_OF_2);
       } else if (check_touch_in_range(gest, BTN_X_COL_1_OF_3, BTN_Y_ROW_2_OF_2, BTN_X_COL_2_OF_3, BTN_Y_END)) {
         // prev
-        send_music_command(CMD_PREV);
-        vib();
-        draw_screen(app_data);
+        click_music_btn(app_data, CMD_PREV, BTN_X_COL_1_OF_3, BTN_Y_ROW_2_OF_2);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_3, BTN_Y_ROW_2_OF_2, BTN_X_COL_3_OF_3, BTN_Y_END)) {
-        // play pause
-        send_music_command(CMD_PLAY);
-        vib();
-        draw_screen(app_data);
+        // play & pause
+        int _cmd = app_data->music_is_paused ? CMD_PLAY : CMD_PAUSE;
+        app_data->music_is_paused = ~app_data->music_is_paused;
+        click_music_btn(app_data, _cmd, BTN_X_COL_2_OF_3, BTN_Y_ROW_2_OF_2);
       } else if (check_touch_in_range(gest, BTN_X_COL_3_OF_3, BTN_Y_ROW_2_OF_2, BTN_X_END, BTN_Y_END)) {
         // next
-        send_music_command(CMD_NEXT);
-        vib();
-        draw_screen(app_data);
+        click_music_btn(app_data, CMD_NEXT, BTN_X_COL_3_OF_3, BTN_Y_ROW_2_OF_2);
       }
     }
 
@@ -213,16 +228,15 @@ int dispatch_screen(void *param) {
 
 // custom function
 void draw_screen(struct app_data_ *app_data) {
-  set_bg_color(COLOR_BLACK);
-  fill_screen_bg();
+  int is_doing_animation = update_animation(app_data) || app_data->music_last_btn_x != -1;
+  int main_x = app_data->main_screen_x;
+
+  if (is_doing_animation == 0) {
+    set_bg_color(COLOR_BLACK);
+    fill_screen_bg();
+  }
   set_graph_callback_to_ram_1();
   load_font();
-
-  set_bg_color(COLOR_WHITE);
-  set_fg_color(COLOR_BLACK);
-
-  int is_doing_animation = update_animation(app_data);
-  int main_x = app_data->main_screen_x;
 
   if (-176 < main_x && main_x < 176) {
     // show main screen
@@ -232,8 +246,7 @@ void draw_screen(struct app_data_ *app_data) {
   
   if (main_x < 0) {
     // show music screen
-    draw_screen_music(main_x + 176);
-
+    draw_screen_music(main_x + 176, app_data);
   }
   
   if (main_x > 0) {
