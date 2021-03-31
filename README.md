@@ -6,8 +6,8 @@ Extra functions for DND screen (BipOS v5.5+)
 **Functions:**
 - Switch DND modes: OFF => ON => AUTO
 - Find my phone
-- Torch (flash light)
-- Music control
+- Torch (flash light): swipe left to access
+- Music control: swipe right to access
 
 **Note:** Flash light and music control functionalities are built into the program. You don't need to install them separately.
 
