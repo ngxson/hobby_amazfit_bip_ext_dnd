@@ -158,6 +158,6 @@ show_elf_res_by_id(ELF_INDEX_SELF, bt_icon,	49, 0);
 
 // РАЗДЕЛИТЕЛЬ
 	set_fg_color(fgColor); // делаем фон
-	draw_horizontal_line(y+19, 0, 176);
+	//draw_horizontal_line(y+19, 0, 176);
 	//repaint_screen_lines(0, y+19); // обновляем строки экрана
 }

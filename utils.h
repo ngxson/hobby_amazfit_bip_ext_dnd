@@ -10,11 +10,12 @@ int check_touch_in_range(struct gesture_ *gest, int from_x, int from_y, int to_x
     && gest->touch_pos_x > from_x && gest->touch_pos_x < to_x;
 }
 
-void switch_dnd_mode() {
+void switch_dnd_mode(struct app_data_ *app_data) {
   char dnd;
   get_generic_data(GENERIC_DATA_DND_MODE, &dnd);
   dnd++; dnd%=3;
   set_generic_data(GENERIC_DATA_DND_MODE, &dnd);
+  app_data->state_hash = -1;
 }
 
 void draw_screen_main(int x, struct app_data_ *app_data) {
@@ -42,6 +43,7 @@ void draw_screen_music(int x, struct app_data_ *app_data) {
   if (app_data->music_last_btn_x != -1) {
     show_elf_res_by_id(ELF_INDEX_SELF, RES_MUSIC_BTN_CLICKED, app_data->music_last_btn_x, app_data->music_last_btn_y);
     app_data->music_last_btn_x = -1;
+    app_data->state_hash = -1;
   }
 }
 
@@ -87,6 +89,22 @@ void set_flash_light_mode(int activate) {
     int bl_index = get_backlight_value();
     set_backlight_percent(backlight_percent[bl_index]);
     set_backlight_state(1);
+  }
+}
+
+/*
+  small hack: decide if we should re-render screen
+  we calculate state_hash and compare to the old one
+*/
+int should_update_status(struct app_data_ *app_data) {
+  struct datetime_ dt; get_current_date_time(&dt);
+  int bt = IS_BT_CONNECTED;
+  int state_hash = (bt << 4) + (dt.hour << 2) + dt.min;
+  if (app_data->state_hash == state_hash) {
+    return 0;
+  } else {
+    app_data->state_hash = state_hash;
+    return 1;
   }
 }
 

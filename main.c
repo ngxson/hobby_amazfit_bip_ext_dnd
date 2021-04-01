@@ -53,6 +53,7 @@ void show_screen(void *proc) {
     app_data->music_is_paused = 1;
     app_data->music_last_btn_x = -1;
     app_data->music_last_btn_y = -1;
+    app_data->state_hash = -1;
     app_data->last_action_tick = get_tick_count();
   }
 
@@ -120,6 +121,12 @@ int click_calc_btn() {
   return 0;
 }
 
+void click_find_phone(struct app_data_ *app_data) {
+  send_host_app_msg(app_data->is_finding_phone ? CMD_FIND_PHONE_STOP : CMD_FIND_PHONE_START);
+  app_data->is_finding_phone = ~app_data->is_finding_phone;
+  app_data->state_hash = -1;
+}
+
 int dispatch_screen(void *param) {
   struct app_data_ **app_data_p = get_ptr_temp_buf_2(); //  pointer to a pointer to screen data 
   struct app_data_ *app_data = *app_data_p; //  pointer to screen data
@@ -140,14 +147,13 @@ int dispatch_screen(void *param) {
       if (check_touch_in_range(gest, BTN_X_COL_1_OF_2, BTN_Y_ROW_1_OF_2, BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2)) {
         // DND button
         vib();
-        switch_dnd_mode();
+        switch_dnd_mode(app_data);
         draw_screen(app_data);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_2, BTN_Y_ROW_1_OF_2, BTN_X_END, BTN_Y_ROW_2_OF_2)) {
         // Find phone button
         if (IS_BT_CONNECTED) {
           vib();
-          send_host_app_msg(app_data->is_finding_phone ? CMD_FIND_PHONE_STOP : CMD_FIND_PHONE_START);
-          app_data->is_finding_phone = ~app_data->is_finding_phone;
+          click_find_phone(app_data);
           draw_screen(app_data);
         }
       } else if (check_touch_in_range(gest, BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2, BTN_X_COL_2_OF_2, BTN_Y_END)) {
@@ -231,6 +237,12 @@ void draw_screen(struct app_data_ *app_data) {
   int is_doing_animation = update_animation(app_data) || app_data->music_last_btn_x != -1;
   int main_x = app_data->main_screen_x;
 
+  // battery saving
+  if (!is_doing_animation && !should_update_status(app_data)) {
+    set_update_period(1, DISPLAY_UPDATE_PERIOD);
+    return;
+  }
+
   if (is_doing_animation == 0) {
     set_bg_color(COLOR_BLACK);
     fill_screen_bg();
@@ -265,6 +277,7 @@ void draw_screen(struct app_data_ *app_data) {
   if (is_doing_animation) {
     repaint_screen_lines(21, 176);
     set_update_period(1, ANIMATION_FRAME_TIME);
+    app_data->state_hash = -1; // force re-render on next update
   } else if (app_data->current_screen == SCREEN_FLASH) {
     repaint_screen_lines(0, 176);
     set_update_period(0, 0);

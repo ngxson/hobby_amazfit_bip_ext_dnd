@@ -49,7 +49,7 @@
 #define CMD_AMC_ENABLE         0xE0
 #define CMD_AMC_DISABLE        0xE1
 
-#define ANIMATION_STEP         44   // = (176 / 4) pixels
+#define ANIMATION_STEP         88   // = (176 / 2) pixels
 #define ANIMATION_FRAME_TIME   5
 #define EXIT_AFTER_INACTIVE    5100 // = 10 secs
 
@@ -64,6 +64,7 @@ struct app_data_ {
   int        music_is_paused;
   int        music_last_btn_x;
   int        music_last_btn_y;
+  int        state_hash;
 };
 
 // template.c
