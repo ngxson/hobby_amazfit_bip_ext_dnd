@@ -18,6 +18,22 @@ void switch_dnd_mode(struct app_data_ *app_data) {
   app_data->state_hash = -1;
 }
 
+/*
+  Custom button must be EXACTLY 88x78 pixels
+  Image for 1st button must be placed at res ID 0000
+  Image for 2nd button must be placed at res ID 0001
+*/
+void draw_custom_button(int id, int x, int y) {
+  struct res_params_ res_params;
+  get_res_params(INDEX_MAIN_RES, id, &res_params);
+  if (res_params.height < 80) {
+    show_elf_res_by_id(INDEX_MAIN_RES, id, x, y);
+  } else {
+    // if the res doesn't have the correct dimensions, use the default
+    show_elf_res_by_id(ELF_INDEX_SELF, id == 0 ? RES_IC_A : RES_IC_B, x, y);
+  }
+}
+
 void draw_screen_main(int x, struct app_data_ *app_data) {
   char dnd;
   int dnd_icon = RES_IC_DND_OFF;
@@ -33,8 +49,8 @@ void draw_screen_main(int x, struct app_data_ *app_data) {
   }
   show_elf_res_by_id(ELF_INDEX_SELF, dnd_icon,        x+BTN_X_COL_1_OF_2, BTN_Y_ROW_1_OF_2);
   show_elf_res_by_id(ELF_INDEX_SELF, find_phone_icon, x+BTN_X_COL_2_OF_2, BTN_Y_ROW_1_OF_2);
-  show_elf_res_by_id(ELF_INDEX_SELF, RES_IC_FLASH,    x+BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2);
-  show_elf_res_by_id(ELF_INDEX_SELF, RES_IC_CALC,     x+BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2);
+  draw_custom_button(BTN_A_RES_ID,                    x+BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2);
+  draw_custom_button(BTN_B_RES_ID,                    x+BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2);
 }
 
 void draw_screen_music(int x, struct app_data_ *app_data) {

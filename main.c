@@ -109,8 +109,8 @@ void click_music_btn(struct app_data_ *app_data, int code, int x, int y) {
   draw_screen(app_data);
 }
 
-int click_calc_btn() {
-  int result = load_elf_by_name("calc", show_watchface, 0, 0, NULL);
+int click_custom_btn(int app_id) {
+  int result = load_elf_by_index(app_id, show_watchface, 0, 0, NULL);
   repaint_screen();
   if (result == ERROR_NONE) {
     Elf_proc_* proc = get_proc_by_addr(main);
@@ -157,12 +157,13 @@ int dispatch_screen(void *param) {
           draw_screen(app_data);
         }
       } else if (check_touch_in_range(gest, BTN_X_COL_1_OF_2, BTN_Y_ROW_2_OF_2, BTN_X_COL_2_OF_2, BTN_Y_END)) {
+        // custom button A
         vib();
-        switch_to_screen(app_data, SCREEN_FLASH);
+        return click_custom_btn(BTN_A_APP_INDEX);
       } else if (check_touch_in_range(gest, BTN_X_COL_2_OF_2, BTN_Y_ROW_2_OF_2, BTN_X_END, BTN_Y_END)) {
-        // Calculator button
+        // custom button B
         vib();
-        return click_calc_btn();
+        return click_custom_btn(BTN_B_APP_INDEX);
       }
     }
     

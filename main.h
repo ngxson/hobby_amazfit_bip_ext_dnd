@@ -8,11 +8,16 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#define DISPLAY_UPDATE_PERIOD   1000
+#define DISPLAY_UPDATE_PERIOD  1000
 
 #define SCREEN_MAIN            0
 #define SCREEN_MUSIC           1
 #define SCREEN_FLASH           2
+
+#define BTN_A_RES_ID           0
+#define BTN_A_APP_INDEX        4
+#define BTN_B_RES_ID           1
+#define BTN_B_APP_INDEX        5
 
 #define RES_ICON_BT_CON        0
 #define RES_ICON_BT_NOT_CON    1
@@ -21,8 +26,8 @@
 #define RES_IC_DND_AUTO        4
 #define RES_IC_FIND_BT_OFF     5
 #define RES_IC_FIND_ON         6
-#define RES_IC_FLASH           7
-#define RES_IC_CALC            8
+#define RES_IC_A               7
+#define RES_IC_B               8
 #define RES_IC_FIND_OFF        9
 #define RES_MUSIC_SCREEN       10
 #define RES_MUSIC_BTN_CLICKED  11
