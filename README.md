@@ -1,4 +1,4 @@
-# hobby_amazfit_bip_ext_dnd
+# hobby_amazfit_bip_ext_dnd V2.0
 Extra functions for DND screen (BipOS v5.5+)
 
 ![image](https://user-images.githubusercontent.com/7702203/113303962-def85880-9301-11eb-86a4-54625ba46e7c.png)
@@ -7,8 +7,8 @@ Extra functions for DND screen (BipOS v5.5+)
 - Switch DND modes: OFF (grey) => ON (green) => AUTO (blue with zz icon)
 - Find my phone
 - Torch (flash light): swipe left to access (This app is built-in)
-- Button to access Calculator (You need to install Calculator app separately)
 - Music control: swipe right to access (This app is built-in)
+- Two customizable buttons (can change app to launch and button icon)
 
 **Note:** Flash light and music control functionalities are built into the program. You don't need to install them separately.
 
@@ -20,9 +20,12 @@ This app allows you to have 2 customizable buttons to launch apps. By default:
 
 ### How to change icon
 
-You can replace res ID **0000** (big zero digit in orange) and **0001** (big zero digit in orange) in your watch's res file. The reason that I choose these two images is that we never use it anyway.
+You can replace res ID **0000** (big zero digit in orange) and **0001** (big zero digit in orange) in your watch's res file.  
+The reason that I choose these two images is that we never use it anyway.
 
 ![image](https://user-images.githubusercontent.com/7702203/113303761-b1abaa80-9301-11eb-9aae-98b5e953c86d.png)
+
+**Useful info**: You can file photoshop files under [asset_extdnd](https://github.com/ngxson/hobby_amazfit_bip_ext_dnd/tree/main/asset_extdnd) folder.
 
 ### How to change app
 
