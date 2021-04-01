@@ -21,7 +21,7 @@ This app allows you to have 2 customizable buttons to launch apps. By default:
 ### How to change icon
 
 You can replace res ID **0000** (big zero digit in orange) and **0001** (big zero digit in orange) in your watch's res file.  
-The reason that I choose these two images is that we never use it anyway.
+The reason that I choose these two images belong to one of the built-in watch face. Most of the time, we use custom watch faces.
 
 ![image](https://user-images.githubusercontent.com/7702203/113303761-b1abaa80-9301-11eb-9aae-98b5e953c86d.png)
 
